@@ -27,7 +27,7 @@ public class StudyApplication {
 		ValueOperations<String, Integer> valueOperations = redisTemplate.opsForValue();
 		Integer number = valueOperations.get("number");
 		valueOperations.set("number", number + 1);
-		return "안녕하세요 숫자 :" + number;
+		return "안녕하세요 숫자입니다. : " + number;
 	}
 
 	public static void main(String[] args) {
