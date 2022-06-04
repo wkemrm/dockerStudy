@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "3000:80"
+
+#  test_database:
+#    build: ./mysql
+#    restart: unless-stopped
+#    container_name: app_mysql
+#    ports:
+#      - "3307:3306"
+#    volumes:
+#      - ./mysql/mysql_data:/var/lib/mysql
+#      - ./mysql/sqls/:/docker-entrypoint-initdb.d/
+#    environment:
+#      MYSQL_DATABASE: mydb
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: user
+#      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+
+  spring:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./spring
+    container_name: app_spring
+    ports:
+      - 8080:5000
+    depends_on:
+      - test_database
+
+
+
+
+

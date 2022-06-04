@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          gdSSs
+          Learn Reactasdasdasdss12
         </a>
       </header>
     </div>
